@@ -1,0 +1,30 @@
+GET http://localhost:3000/students
+###
+
+GET http://localhost:3000/students/202102116
+###
+
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "name":"Arjun",
+    "course":"MCA",
+    "deptName":"Dept of Computer Science",
+    "mobileNo":9765050021
+}
+###
+
+PUT http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "admNo":202102120,
+    "name":"Purum Sasidhar",
+    "course":"MCA",
+    "deptName":"Dept of Computer Science",
+    "mobileNo":9440279575
+}
+###
+
+DELETE http://localhost:3000/students/202102127
