@@ -1,17 +1,17 @@
 GET http://localhost:3000/students
 ###
 
-GET http://localhost:3000/students/202102116
+GET http://localhost:3000/students/202102139
 ###
 
 POST http://localhost:3000/students
 Content-Type: application/json
 
 {
-    "name":"Arjun",
+    "name":"Gandla Govardhan",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":9765050021
+    "mobileNo":8247754437
 }
 ###
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 {
     "admNo":202102120,
-    "name":"Purum Sasidhar",
+    "name":"Gandla Govardhan",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
     "mobileNo":9440279575
@@ -28,3 +28,8 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/students/202102127
+###
+GET  https://rest-student-api.onrender.com/students/
+
+###
+GET https://oembed.com/providers.json
