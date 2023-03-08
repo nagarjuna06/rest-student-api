@@ -1,12 +1,21 @@
-const exp = require('constants');
-const { response } = require('express');
 const express = require('express');
-const { request } = require('https');
 const path = require('path');
 const { open } = require('sqlite');
 const sqlite3 = require('sqlite3');
 const app = express();
 app.use(express.json());
+app.use(cors());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Methods",
+        "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+    );
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin,X-Requested-With,Content-Type,Accept,Authorization"
+    )
+})
 const dbPath = path.join(__dirname, "student.db")
 let db = null
 const port = process.env.PORT || 3000
@@ -82,4 +91,10 @@ app.delete('/students/:studentId', async (request, response) => {
     const deleteStudentQuery = `DELETE FROM STUDENT WHERE adm_no=${studentId};`;
     await db.run(deleteStudentQuery)
     response.send(`${studentId} deleted successfully!`)
+})
+
+app.get('/embed', async (request, response) => {
+    const res = await fetch('https://oembed.com/providers.json');
+    const result = await res.json()
+    response.send(result)
 })
