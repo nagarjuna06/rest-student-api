@@ -6,7 +6,7 @@ const cors = require('cors')
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000/'
+    origin: 'http://localhost:5500/'
 }));
 const dbPath = path.join(__dirname, "student.db")
 let db = null
