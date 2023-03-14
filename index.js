@@ -3,8 +3,10 @@ const path = require('path');
 const { open } = require('sqlite');
 const sqlite3 = require('sqlite3');
 const cors = require('cors');
+// const compression = require('compression');
 const app = express();
 app.use(express.json());
+// app.use(compression())
 app.use(cors({
     origin: 'http://127.0.0.1:5500'
 }));

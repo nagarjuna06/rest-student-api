@@ -38,4 +38,4 @@ GET https://oembed.com/providers.json
 
 GET http://localhost:3000/embed
 ###
-GET http://localhost:3000/
+GET https://apis-student.onrender.com/students/
