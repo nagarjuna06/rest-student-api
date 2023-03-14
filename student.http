@@ -1,14 +1,14 @@
-GET http://localhost:3000/students
+GET https://student-api-zi4h.onrender.com/students/
 ###
 
 GET http://localhost:3000/students/202102139
 ###
 
-POST http://localhost:3000/students
+POST https://student-api-zi4h.onrender.com/students
 Content-Type: application/json
 
 {
-    "name":"Gandla Govardhan",
+    "name":"T Srikanth",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
     "mobileNo":8247754437
@@ -30,10 +30,12 @@ Content-Type: application/json
 DELETE http://localhost:3000/students/202102127
 ###
 
-GET  https://student-api-zi4h.onrender.com/students/
+GET  https://student-api-zi4h.onrender.com/students/202102130
 ###
 
 GET https://oembed.com/providers.json
 ###
 
 GET http://localhost:3000/embed
+###
+GET http://localhost:3000/

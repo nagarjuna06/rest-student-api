@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const { open } = require('sqlite');
 const sqlite3 = require('sqlite3');
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors({
@@ -90,3 +90,9 @@ app.get('/embed', async (request, response) => {
     const result = await res.json()
     response.send(result)
 })
+
+app.get('/', async (request, response) => {
+    response.send(request)
+})
+
+setInterval(() => console.log("server is refreshed"), 10000)
