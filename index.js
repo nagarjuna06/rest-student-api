@@ -94,5 +94,3 @@ app.get('/embed', async (request, response) => {
 app.get('/', async (request, response) => {
     response.send(request)
 })
-
-setInterval(() => console.log("server is refreshed"), 3000)
