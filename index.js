@@ -7,9 +7,7 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 // app.use(compression())
-app.use(cors({
-    origin: 'http://127.0.0.1:5500'
-}));
+app.use(cors());
 const dbPath = path.join(__dirname, "student.db")
 let db = null
 const port = process.env.PORT || 3000
@@ -28,8 +26,20 @@ const initializeDBandServer = async () => {
 }
 initializeDBandServer()
 
+//this is the origin
+const isThisOrigin = (request, response, next) => {
+    const { origin } = request.headers;
+    if (origin === 'http://192.168.43.143:3000') {
+        next()
+    }
+    else {
+        response.status(400)
+        response.send({ msg: " This Api has Restricted by Admin!" })
+    }
+}
+
 //get all students details
-app.get('/students', async (request, response) => {
+app.get('/students', isThisOrigin, async (request, response) => {
     const query = `SELECT * FROM student`
     const Array = await db.all(query)
     response.send(Array)
@@ -42,6 +52,8 @@ app.get('/students/:studentId/', async (request, response) => {
     const Array = await db.get(getStudentQuery)
     response.send(Array)
 })
+
+
 
 //add student
 app.post('/students', async (request, response) => {
@@ -94,5 +106,6 @@ app.get('/embed', async (request, response) => {
 })
 
 app.get('/', async (request, response) => {
-    response.send(request)
+    response.status(200);
+    response.send("welcome")
 })
