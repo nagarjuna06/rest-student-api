@@ -39,7 +39,7 @@ const isThisOrigin = (request, response, next) => {
 }
 
 //get all students details
-app.get('/students', isThisOrigin, async (request, response) => {
+app.get('/students', async (request, response) => {
     const query = `SELECT * FROM student`
     const Array = await db.all(query)
     response.send(Array)
