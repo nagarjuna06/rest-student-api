@@ -1,17 +1,16 @@
-GET https://student-api-zi4h.onrender.com/students/
+GET http://localhost:3000/
 ###
 
-GET http://localhost:3000/students/202102139
+GET http://localhost:3000/students
 ###
-
-POST https://student-api-zi4h.onrender.com/students
+POST http://localhost:3000/students
 Content-Type: application/json
 
 {
-    "name":"T Srikanth",
+    "name":"Manikanta",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":8247754437
+    "mobileNo":"931478523"
 }
 ###
 
@@ -19,26 +18,11 @@ PUT http://localhost:3000/students
 Content-Type: application/json
 
 {
-    "admNo":202102120,
-    "name":"Gandla Govardhan",
+    "admNo":202102102,
+    "name":"Basineini Sri Maikanta",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":9440279575
+    "mobileNo":"931478523"
 }
 ###
 
-DELETE http://localhost:3000/students/202102127
-###
-
-GET  https://student-api-zi4h.onrender.com/students/202102130
-###
-
-GET https://oembed.com/providers.json
-###
-
-GET http://localhost:3000/embed
-###
-GET https://apis-student.onrender.com/students/
-
-###
-GET http://localhost:3000/students
