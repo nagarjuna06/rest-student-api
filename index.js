@@ -15,9 +15,9 @@ const db = new Pool({
 app.listen(3000, () => console.log('server is running at http://localhost:3000'))
 
 //get all students details
-app.get('/students', (request, response) => {
+app.get('/students', async (request, response) => {
     const query = `SELECT * FROM student order by adm_no;`
-    db.query(query, (err, res) => {
+    await db.query(query, (err, res) => {
         if (err) {
             response.send('error!')
         }
@@ -29,10 +29,10 @@ app.get('/students', (request, response) => {
 
 //get student by id
 0
-app.get('/students/:studentId/', (request, response) => {
+app.get('/students/:studentId/', async (request, response) => {
     const { studentId } = request.params
     const getStudentQuery = `SELECT * FROM STUDENT WHERE adm_no=${studentId}`;
-    db.query(getStudentQuery, (err, res) => {
+    await db.query(getStudentQuery, (err, res) => {
         if (err) {
             response.send('error!')
         }
@@ -50,7 +50,7 @@ app.get('/students/:studentId/', (request, response) => {
 
 
 //add student
-app.post('/students', (request, response) => {
+app.post('/students', async (request, response) => {
     const studentDetails = request.body
     const { name, course, deptName, mobileNo } = studentDetails
     const addStudentQuery = `
@@ -62,7 +62,7 @@ app.post('/students', (request, response) => {
         '${mobileNo}'
     ) RETURNING adm_no
     ;`;
-    db.query(addStudentQuery, (err, res) => {
+    await db.query(addStudentQuery, (err, res) => {
         if (err) {
             response.send('error!')
         }
@@ -73,7 +73,7 @@ app.post('/students', (request, response) => {
 })
 
 //update student details
-app.put('/students', (request, response) => {
+app.put('/students', async (request, response) => {
     const studentDetails = request.body
     const { admNo, name, course, deptName, mobileNo } = studentDetails
     const updateStudentQuery = `
@@ -86,7 +86,7 @@ app.put('/students', (request, response) => {
     WHERE
     adm_no=${admNo}
     `
-    db.query(updateStudentQuery, (err, res) => {
+    await db.query(updateStudentQuery, (err, res) => {
         if (err) {
             response.send('error!')
         }
@@ -97,10 +97,10 @@ app.put('/students', (request, response) => {
 })
 
 //delete student
-app.delete('/students/:studentId', (request, response) => {
+app.delete('/students/:studentId', async (request, response) => {
     const { studentId } = request.params
     const deleteStudentQuery = `DELETE FROM STUDENT WHERE adm_no=${studentId};`;
-    db.query(deleteStudentQuery, (err, res) => {
+    await db.query(deleteStudentQuery, (err, res) => {
         if (err) {
             response.send('error!')
         }

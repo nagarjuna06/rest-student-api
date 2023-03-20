@@ -1,16 +1,16 @@
-GET http://localhost:3000/
+GET http://apis-student.onrender.com/
 ###
 
-GET http://localhost:3000/students
+GET https://apis-student.onrender.com/students
 ###
-POST http://localhost:3000/students
+POST https://localhost:3000/students
 Content-Type: application/json
 
 {
-    "name":"Manikanta",
+    "name":"P sasidhar ",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":"931478523"
+    "mobileNo":"931484523"
 }
 ###
 
@@ -26,3 +26,8 @@ Content-Type: application/json
 }
 ###
 
+###
+DELETE http://localhost:3000/students/202102102
+###
+
+GET http://localhost:3000/students
