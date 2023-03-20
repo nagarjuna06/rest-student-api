@@ -1,33 +1,37 @@
 GET http://apis-student.onrender.com/
 ###
 
-GET https://apis-student.onrender.com/students/202102112
+GET https://apis-student.onrender.com/students
 ###
 POST https://apis-student.onrender.com/students
 Content-Type: application/json
 
 {
-    "name":"P venu",
+    "name":"K Anil Babu",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":"931369234"
+    "mobileNo":"975102615"
 }
 ###
 
-PUT http://localhost:3000/students
+PUT http://apis-student.onrender.com/students
 Content-Type: application/json
 
 {
-    "admNo":202102102,
-    "name":"Basineini Sri Maikanta",
+    "admNo":202102119,
+    "name":"Anil Babu Katika",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":"931478523"
+    "mobileNo":"9314876534"
 }
 ###
 
-###
-DELETE http://localhost:3000/students/202102102
+GET http://localhost:3000/students/202102119
 ###
 
-GET http://localhost:3000/students
+
+DELETE http://localhost:3000/students/202102104
+###
+
+
+GET https://oembed.com/providers.json
