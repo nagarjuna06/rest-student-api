@@ -1,16 +1,16 @@
 GET http://apis-student.onrender.com/
 ###
 
-GET https://apis-student.onrender.com/students
+GET https://apis-student.onrender.com/students/202102112
 ###
-POST https://localhost:3000/students
+POST https://apis-student.onrender.com/students
 Content-Type: application/json
 
 {
-    "name":"P sasidhar ",
+    "name":"P venu",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "mobileNo":"931484523"
+    "mobileNo":"931369234"
 }
 ###
 
