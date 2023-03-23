@@ -7,25 +7,18 @@ app.use(express.json());
 app.use(cors());
 
 const db = new Pool({
-    connectionString: 'postgres://admin:eWVvSRAMe4wkCbNkIBTcuDhBGHIpvwWu@dpg-cgbe7hl269v4icrcvid0-a/testing_g1yp',
+    connectionString: 'postgres://admin:eWVvSRAMe4wkCbNkIBTcuDhBGHIpvwWu@dpg-cgbe7hl269v4icrcvid0-a.oregon-postgres.render.com/testing_g1yp',
     ssl: { rejectUnauthorized: false }
 });
 
 
 app.listen(3000, () => console.log('server is running at http://localhost:3000'))
 
-//get all students details
-app.get('/students', async (request, response) => {
-    const query = `SELECT * FROM student order by adm_no;`
-    const Array = await db.query(query)
-    const result = Array.rows
-    response.send(result)
-})
 
 //get student by id
-app.get('/students/:studentId/', async (request, response) => {
+app.get('/students/:studentId', async (request, response) => {
     const { studentId } = request.params
-    const query = `SELECT * FROM STUDENT WHERE adm_no=${studentId}`;
+    const query = `SELECT * FROM STUDENT WHERE adm_no=${studentId};`;
     const Array = await db.query(query)
     const result = Array.rows
     if (result.length > 0) {
@@ -37,41 +30,81 @@ app.get('/students/:studentId/', async (request, response) => {
 })
 
 
+app.get('/students/', async (request, response) => {
+    const { name = '' } = request.query
+    const query = `SELECT * FROM STUDENT WHERE name like '%${name}%' order by adm_no;`;
+    const Array = await db.query(query)
+    const result = Array.rows
+    if (result.length > 0) {
+        response.send(result)
+    }
+    else {
+        response.send(`${name} not Found!`)
+    }
+})
+
+
 
 //add student
 app.post('/students', async (request, response) => {
     const studentDetails = request.body
     const { name, course, deptName, mobileNo } = studentDetails
-    const query = `
-    INSERT INTO STUDENT(name,course,dept_name,mobile_no)
-    VALUES(
-        '${name}',
-        '${course}',
-        '${deptName}',
-        '${mobileNo}'
-    ) RETURNING adm_no
-    ;`;
-    const Array = await db.query(query)
-    const result = Array.rows[0]
-    response.send(`Your Admission number is: ${result.adm_no}`)
+    if (name === undefined) {
+        response.send({ msg: 'name is missing!' })
+    }
+    else if (course === undefined) {
+        response.send({ msg: 'course is missing!' });
+    }
+    else if (deptName === undefined) {
+        response.send({ msg: 'dept name is missing!' })
+    }
+    else if (mobileNo === undefined) {
+        response.send({ msg: 'mobile number is missing!' })
+    }
+    else {
+        const query = `
+        INSERT INTO STUDENT(name,course,dept_name,mobile_no)
+        VALUES(
+            '${name}',
+            '${course}',
+            '${deptName}',
+            '${mobileNo}'
+        ) RETURNING adm_no
+        ;`;
+        const Array = await db.query(query)
+        const result = Array.rows[0]
+        response.send({ msg: `Your Admission number is: ${result.adm_no}` })
+    }
 })
 
 //update student details
-app.put('/students', async (request, response) => {
+app.put('/students/:studentId', async (request, response) => {
     const studentDetails = request.body
-    const { admNo, name, course, deptName, mobileNo } = studentDetails
-    const query = `
-    UPDATE STUDENT
-    SET
-    name='${name}',
-    course='${course}',
-    dept_name='${deptName}',
-    mobile_no='${mobileNo}'
-    WHERE
-    adm_no=${admNo};`
+    const { studentId } = request.params
+    const getData = `SELECT name,course,dept_name,mobile_no from student where adm_no=${studentId}; `
+    const queryData = await db.query(getData);
+    const details = queryData.rows[0];
+    if (details.length === 0) {
+        response.send({ msg: `${studentId} not found!` })
+    }
+    else {
+        const { name = details.name,
+            course = details.course,
+            deptName = details.dept_name,
+            mobileNo = details.mobile_no } = studentDetails
+        const query = `
+        UPDATE STUDENT
+        SET
+        name='${name}',
+        course='${course}',
+        dept_name='${deptName}',
+        mobile_no='${mobileNo}'
+        WHERE
+        adm_no=${studentId};`
 
-    await db.query(query)
-    response.send(`${admNo} has updated successfully!`);
+        await db.query(query)
+        response.send({ msg: `${studentId} has updated successfully!` });
+    }
 })
 
 //delete student
@@ -79,7 +112,7 @@ app.delete('/students/:studentId', async (request, response) => {
     const { studentId } = request.params
     const query = `DELETE FROM STUDENT WHERE adm_no=${studentId};`;
     await db.query(query)
-    response.send(`${studentId} has deleted successfully!`)
+    response.send({ msg: `${studentId} has deleted successfully!` })
 })
 
 

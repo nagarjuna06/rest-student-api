@@ -3,30 +3,26 @@ GET http://apis-student.onrender.com/
 
 GET https://apis-student.onrender.com/students
 ###
-POST https://apis-student.onrender.com/students
+POST http://localhost:3000/students
 Content-Type: application/json
 
 {
-    "name":"K Anil Babu",
+    "name":"K Naveen",
     "course":"MCA",
-    "deptName":"Dept of Computer Science",
-    "mobileNo":"975102615"
+    "deptName":"Dept of CS",
+    "mobileNo":"987654321"
 }
 ###
 
-PUT http://apis-student.onrender.com/students
+PUT http://localhost:3000/students/202102101
 Content-Type: application/json
 
 {
-    "admNo":202102119,
-    "name":"Anil Babu Katika",
-    "course":"MCA",
-    "deptName":"Dept of Computer Science",
-    "mobileNo":"9314876534"
+    "name":"C Nagarjuna"
 }
 ###
 
-GET http://localhost:3000/students/202102119
+GET http://localhost:3000/students
 ###
 
 
