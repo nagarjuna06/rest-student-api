@@ -33,13 +33,26 @@ The server will start running on `http://localhost:3000`.
 
 ##### Add a student
 
-To add a student, send a POST request to /students with the following JSON data:
+To add a student, send a POST request to `/students` with the following JSON data:
 
 ```{
     "name": "John Doe",
-    "admissionNumber": "123456",
+    "course":"MCA",
+    "deptName":"Dept of Computer Science",
     "email": "john.doe@example.com",
     "phoneNumber": "1234567890"
+}
+```
+
+##### Update a student Details
+
+To add a student, send a PUT request to `/students/:admissionNumber` with the following JSON data:
+
+```{
+    "name": "John Doe",
+    "course":"MCA",
+    "deptName":"Dept of Computer Science",
+    "mobileNo": "1234567890"
 }
 ```
 
@@ -49,19 +62,11 @@ To delete a student, send a DELETE request to `/students/:admissionNumber`, wher
 
 #### Search for a student by name
 
-To search for a student by name, send a GET request to `/students?name=:name`, where `:name` is the name of the student to be searched.
+To search for a student by name, send a GET request to `/students/?name=:name`, where `:name` is the name of the student to be searched.
 
 #### Search for a student by name
 
 To search for a student by name, send a GET request to `/students?name=:name`, where `:name` is the name of the student to be searched.
-
-```
-{
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "phoneNumber": "1234567890"
-}
-```
 
 #### Error handling
 
