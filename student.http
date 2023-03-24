@@ -7,10 +7,10 @@ POST http://localhost:3000/students
 Content-Type: application/json
 
 {
-    "name":"K Naveen",
+    "name":"A Vamsi",
     "course":"MCA",
     "deptName":"Dept of CS",
-    "mobileNo":"987654321"
+    "mobileNo":"987564321"
 }
 ###
 
@@ -18,16 +18,13 @@ PUT http://localhost:3000/students/202102101
 Content-Type: application/json
 
 {
-    "name":"C Nagarjuna"
+    "mobileNo":"9391568280"
 }
 ###
 
-GET http://localhost:3000/students
+GET http://localhost:3000/students/?name=Vamsi
 ###
 
 
-DELETE http://localhost:3000/students/202102104
+DELETE http://localhost:3000/students/202102124
 ###
-
-
-GET https://oembed.com/providers.json

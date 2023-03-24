@@ -72,8 +72,11 @@ app.post('/students', async (request, response) => {
         ) RETURNING adm_no
         ;`;
         const Array = await db.query(query)
-        const result = Array.rows[0]
-        response.send({ msg: `Your Admission number is: ${result.adm_no}` })
+        const result = Array.rows[0];
+        const getInsertedData = `SELECT * FROM STUDENT WHERE adm_no=${result.adm_no};`
+        const data = await db.query(getInsertedData);
+        response.status(201)
+        response.send(data.rows[0])
     }
 })
 
@@ -103,7 +106,9 @@ app.put('/students/:studentId', async (request, response) => {
         adm_no=${studentId};`
 
         await db.query(query)
-        response.send({ msg: `${studentId} has updated successfully!` });
+        const getInsertedData = `SELECT * FROM STUDENT WHERE adm_no=${studentId};`
+        const data = await db.query(getInsertedData);
+        response.send(data.rows[0])
     }
 })
 
@@ -112,6 +117,7 @@ app.delete('/students/:studentId', async (request, response) => {
     const { studentId } = request.params
     const query = `DELETE FROM STUDENT WHERE adm_no=${studentId};`;
     await db.query(query)
+    response.status(204)
     response.send({ msg: `${studentId} has deleted successfully!` })
 })
 
