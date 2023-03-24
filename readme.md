@@ -35,7 +35,8 @@ The server will start running on `http://localhost:3000`.
 
 To add a student, send a POST request to `/students` with the following JSON data:
 
-```{
+```
+{
     "name": "John Doe",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
@@ -48,7 +49,8 @@ To add a student, send a POST request to `/students` with the following JSON dat
 
 To add a student, send a PUT request to `/students/:admissionNumber` with the following JSON data:
 
-```{
+```
+{
     "name": "John Doe",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
