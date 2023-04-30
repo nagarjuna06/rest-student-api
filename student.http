@@ -3,14 +3,14 @@ GET http://apis-student.onrender.com/
 
 GET https://apis-student.onrender.com/students
 ###
-POST http://localhost:3000/students
+POST http://apis-student.onrender.com/students
 Content-Type: application/json
 
 {
-    "name":"A Vamsi",
+    "name":"Akola Pavan Kalyan",
     "course":"MCA",
     "deptName":"Dept of CS",
-    "mobileNo":"987564321"
+    "mobileNo":"9948564369"
 }
 ###
 
@@ -20,11 +20,4 @@ Content-Type: application/json
 {
     "mobileNo":"9391568280"
 }
-###
-
-GET http://localhost:3000/students/?name=Vamsi
-###
-
-
-DELETE http://localhost:3000/students/202102124
 ###
