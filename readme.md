@@ -1,4 +1,6 @@
-# Student REST API using ExpressJS
+# Student REST API With PostgreSql Database using ExpressJS
+
+**API LINK:** https://apis-student.onrender.com
 
 This is a Student REST API built using Node.js and ExpressJS. It provides the following features:
 
@@ -40,7 +42,6 @@ To add a student, send a POST request to `/students` with the following JSON dat
     "name": "John Doe",
     "course":"MCA",
     "deptName":"Dept of Computer Science",
-    "email": "john.doe@example.com",
     "phoneNumber": "1234567890"
 }
 ```
@@ -78,4 +79,3 @@ In case of any error, the API will return an appropriate HTTP status code along 
 
 This is a simple Student REST API that can be used to perform CRUD operations on student data. It can be extended further to include additional features as required.
 
-**API LINK:** https://apis-student.onrender.com
